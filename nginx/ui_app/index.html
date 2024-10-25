@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDPAI_LAB_1</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="./requests_async.js" defer></script>
+</head>
+
+<body>
+    <div class="my_fancy_box">
+        <h1>Lets level up your brand, together</h1>
+        <form id="user_form">
+            <div class="form_group">
+                <label for="first_name">First name</label>
+                <input type="text" id="first_name" placeholder="First name" required>
+            </div>
+            <div class="form_group">
+                <label for="last_name">Last name</label>
+                <input type="text" id="last_name" placeholder="Last name" required>
+            </div>
+            <div class="form_group">
+                <label for="role">Role</label>
+                <select id="role" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="manager">Manager</option>
+                    <option value="designer">Designer</option>
+                    <option value="student">Student</option>
+                    <option value="developer">Developer</option>
+                    <option value="analyst">Analyst</option>
+                </select>
+            </div>
+            <div class="form_group">
+                <label class="checkbox_label">
+                    <input type="checkbox" name="privacy_policy" value="accepted" required>
+                    You agree to our friendly<a href="#">privacy policy</a>.
+                </label>
+            </div>
+            <button type="submit" class="submit_button">SUBMIT</button>
+        </form>
+
+        <div id="user_list_container" class="user_list">
+            <h2 class="user_list_header">Current Users</h2>
+            <ul id="user_list"></ul>
+        </div>
+
+    </div>
+</body>
+
+</html>
