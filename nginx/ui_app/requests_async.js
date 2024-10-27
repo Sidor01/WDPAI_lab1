@@ -29,54 +29,6 @@ async function sendPostRequest() {
         console.error('Error:', error);
     }
 }
-
-document.querySelector('.submit_button').addEventListener('click', (event) => {
-    event.preventDefault();
-    sendPostRequest();
-});
-
-async function fetchItems() {
-    const url = "http://localhost:8000/";
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log("Fetched items:", data);
-
-        if (Array.isArray(data)) {
-            displayItems(data);
-        } else {
-            console.error('Expected an array, but got:', data);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-
-
-function displayItems(items) {
-    const itemList = document.getElementById("user_list");
-    itemList.innerHTML = "";
-
-    items.forEach((item, index) => {
-        const listItem = document.createElement("li");
-        listItem.className = "user_item";
-        listItem.textContent = `${item.first_name} ${item.last_name} (${item.role})`;
-
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
-        deleteButton.className = "delete_button";
-        deleteButton.onclick = function () {
-            deleteItem(index);
-        };
-
-        listItem.appendChild(deleteButton);
-        itemList.appendChild(listItem);
-    });
-}
-
-
 async function deleteItem(index) {
     try {
         const response = await fetch(`http://localhost:8000/${index}`, {
@@ -99,4 +51,47 @@ async function deleteItem(index) {
     }
 }
 
+
+
+document.querySelector('.submit_button').addEventListener('click', (event) => {
+    event.preventDefault();
+    sendPostRequest();
+});
+async function fetchItems() {
+    const url = "http://localhost:8000/";
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log("Fetched items:", data);
+
+        if (Array.isArray(data)) {
+            displayItems(data);
+        } else {
+            console.error('Expected an array, but got:', data);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+function displayItems(items) {
+    const itemList = document.getElementById("user_list");
+    itemList.innerHTML = "";
+
+    items.forEach((item, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "user_item";
+        listItem.textContent = `${item.first_name} ${item.last_name} (${item.role})`;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "delete_button";
+        deleteButton.onclick = function () {
+            deleteItem(index);
+        };
+
+        listItem.appendChild(deleteButton);
+        itemList.appendChild(listItem);
+    });
+}
 fetchItems();
